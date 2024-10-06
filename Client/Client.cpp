@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
         }
         cout << "Server: " << msg << endl;
     }
-    gettimeofday(&end1, NULL);
+    gettimeofday(&end1, nullptr);
     close(clientSd);
     cout << "********Session********" << endl;
     cout << "Bytes written: " << bytesWritten << 
