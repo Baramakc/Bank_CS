@@ -14,23 +14,23 @@
 #include <sys/wait.h>
 #include <fcntl.h>
 #include <fstream>
+
 using namespace std;
-//Client side
+
 int main(int argc, char *argv[])
 {
-    char *serverIp = "127.0.0.1"; int port = 4321; 
-    //create a message buffer 
+    const char *serverIp = "127.0.0.1"; int port = 4321; 
+
     char msg[1500]; 
-    //setup a socket and connection tools 
+
     struct hostent* host = gethostbyname(serverIp); 
     sockaddr_in sendSockAddr;   
     bzero((char*)&sendSockAddr, sizeof(sendSockAddr)); 
     sendSockAddr.sin_family = AF_INET; 
-    sendSockAddr.sin_addr.s_addr = 
-        inet_addr(inet_ntoa(*(struct in_addr*)*host->h_addr_list));
+    sendSockAddr.sin_addr.s_addr = inet_addr(inet_ntoa(*(struct in_addr*)*host->h_addr_list));
     sendSockAddr.sin_port = htons(port);
     int clientSd = socket(AF_INET, SOCK_STREAM, 0);
-    //try to connect...
+
     int status = connect(clientSd,
                          (sockaddr*) &sendSockAddr, sizeof(sendSockAddr));
     if(status < 0)
